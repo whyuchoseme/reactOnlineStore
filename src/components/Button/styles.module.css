@@ -1,0 +1,19 @@
+.s {
+  width: 24px;
+  height: 21px;
+}
+
+.m {
+  width: 80px;
+  height: 21px;
+}
+
+.disabled {
+  width: 22px;
+  height: 21px;
+}
+
+.active {
+  border: none;
+  background-color: orangered;
+}

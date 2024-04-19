@@ -6,11 +6,19 @@ export const Dish = ({ dish }) => {
   return (
     <div>
       <span>{dish} - </span>
-      <Button onClick={() => setCount(count - 1)} disableb={count === 0}>
+      <Button
+        onClick={() => setCount(count - 1)}
+        disabled={count === 0}
+        size="s"
+      >
         -
       </Button>
       {count}
-      <Button onClick={() => setCount(count + 1)} disableb={count === 5}>
+      <Button
+        onClick={() => setCount(count + 1)}
+        disabled={count === 5}
+        size="s"
+      >
         +
       </Button>
     </div>
