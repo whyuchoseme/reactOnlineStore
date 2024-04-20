@@ -8,12 +8,69 @@
   height: 21px;
 }
 
+.m.black {
+  background-color: #f0f0f0;
+  color: black;
+}
+
 .disabled {
-  width: 22px;
+  width: auto;
   height: 21px;
 }
 
-.active {
+.disabled.black {
+  background-color: #efefefa9;
+  border-color: #efefef4d;
+}
+
+.active,
+.active.black {
   border: none;
   background-color: orangered;
+}
+
+.switchTheme {
+  padding: 0 5px;
+  border-width: 1px;
+  border-radius: 10px;
+}
+
+.switchTheme:active {
+  color: white;
+  background-color: black;
+  border-color: white;
+}
+
+.switchTheme:active.black {
+  color: black;
+  background-color: white;
+  border-color: black;
+}
+
+.black {
+  color: white;
+  background-color: black;
+  border-color: white;
+}
+
+.rating,
+.ratingActive {
+  width: 30px;
+  padding: 2px 0;
+  border-radius: 20%;
+}
+
+.ratingHovered {
+  opacity: 0.7;
+  background-color: gold;
+}
+
+.ratingActive {
+  opacity: 1;
+  background-color: gold;
+}
+
+.ratingHovered.black,
+.ratingActive.black {
+  background-color: rgba(255, 68, 0, 0.8);
 }
