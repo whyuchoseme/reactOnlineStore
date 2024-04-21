@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { useReducer } from "react";
 import { Button } from "../Button/component";
 import { useTheme } from "../../contexts/Theme";
+import { RatingInput } from "../RatingInput/component";
 
 const DEFAULT_VALUE = {
   user: "",
@@ -53,15 +54,11 @@ export const ReviewsForm = ({ onSubmit }) => {
           }
         />
       </div>
-      <div className={styles.ratingInput}>
-        <span>Rating:</span>
-        <input
-          value={formValue.rating}
-          onChange={(event) =>
-            dispatch({ type: "setRating", payload: event.target.value })
-          }
-        />
-      </div>
+      <RatingInput
+        className={styles.ratingInput}
+        value={formValue.rating}
+        onChange={(value) => dispatch({ type: "setRating", payload: value })}
+      />
       <div className={styles.actionButtons}>
         <Button onClick={() => dispatch({ type: "reset" })}>Reset</Button>
         <Button onClick={onSubmit}>Submit</Button>

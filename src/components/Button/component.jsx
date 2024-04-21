@@ -9,6 +9,9 @@ export const Button = ({
   className,
   size,
   type,
+  hovered,
+  onMouseEnter,
+  onMouseLeave
 }) => {
   const { theme } = useTheme();
   return (
@@ -18,12 +21,15 @@ export const Button = ({
         styles[size],
         styles[type],
         styles[theme],
+        styles[hovered],
         {
           [styles.disabled]: disabled,
         }
       )}
       onClick={onClick}
       disabled={disabled}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       {children}
     </button>

@@ -1,7 +1,6 @@
 import { AddReviewButton } from "../AddReviewButton/component";
 import { Menu } from "../Menu/component";
 import { Reviews } from "../Reviews/component";
-import { ReviewsForm } from "../ReviewsForm/component";
 import styles from "./styles.module.css";
 
 export const Restaurant = ({ restaurant }) => {
@@ -11,7 +10,6 @@ export const Restaurant = ({ restaurant }) => {
       <Menu menu={restaurant.menu} />
       <Reviews reviews={restaurant.reviews} />
       <AddReviewButton className={styles.addReviewButton}/>
-      {/* <ReviewsForm /> */}
     </div>
   );
 };
