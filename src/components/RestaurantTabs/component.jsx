@@ -1,20 +1,19 @@
-import { Tab } from "../Tab/component";
+import { RestaurantTabContainer } from "../RestaurantTabContainer/container";
 
 export const RestaurantTabs = ({
-  restaurants,
+  restaurantsIds,
   onTabSelect,
   activeRestaurantId,
 }) => {
   return (
     <div>
-      {restaurants.map(({ id, name }) => (
-        <Tab
+      {restaurantsIds.map((id) => (
+        <RestaurantTabContainer
           key={id}
           onClick={() => onTabSelect(id)}
           isActive={id === activeRestaurantId}
-        >
-          {name}
-        </Tab>
+          restaurantId={id}
+        />
       ))}
     </div>
   );

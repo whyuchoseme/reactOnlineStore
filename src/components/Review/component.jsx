@@ -1,7 +1,9 @@
+import { UserContainer } from "../User/container";
+
 export const Review = ({ review }) => {
   return (
     <div>
-      {review.user}: {review.text}
+      <UserContainer usersIds={review.userId} /> {review.text}
     </div>
   );
 };
