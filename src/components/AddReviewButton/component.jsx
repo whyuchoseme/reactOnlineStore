@@ -6,7 +6,7 @@ import { useBlur } from "../../contexts/Blur";
 
 export const AddReviewButton = ({ className }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { switchBlur, isBlurActive } = useBlur();
+  const { switchBlur } = useBlur();
 
   const openModal = () => {
     setIsModalOpen(true);
