@@ -1,16 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Layout } from "../../components/Layout/component";
 import { useSelector } from "react-redux";
 import { selectRestaurantIds } from "../../redux/entities/restaurant/selectors";
 import { RestaurantTabsContainer } from "../../components/RestaurantTabs/container";
 import { RestaurantContainer } from "../../components/Restaurant/container";
+import { getRestaurants } from "../../redux/entities/restaurant/thunks/get-restaurants";
+import { LOADING_STATUS } from "../../constants/loading-statuses";
+import { useRequest } from "../../hooks/use-request";
+import { getStorageItem } from "../../utils/utils";
 
 export const MainPage = () => {
-  const restaurantsIds = useSelector(selectRestaurantIds);
+  const restaurantIds = useSelector(selectRestaurantIds);
+  const [activeRestaurantId, setActiveRestaurantId] = useState();
+  const restaurantLoadingStatus = useRequest(getRestaurants);
 
-  const [activeRestaurantId, setActiveRestaurantId] = useState(
-    restaurantsIds[0]
-  );
+  useEffect(() => {
+    if (!activeRestaurantId && restaurantIds?.length) {
+      setActiveRestaurantId(restaurantIds[0]);
+    } else {
+      setActiveRestaurantId(getStorageItem("lastActiveRestaurant"));
+    }
+  }, [restaurantIds]);
+
+  if (restaurantLoadingStatus !== LOADING_STATUS.finished) {
+    return <Layout>Loading...</Layout>;
+  }
 
   return (
     <Layout>

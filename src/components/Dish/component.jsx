@@ -1,22 +1,25 @@
-import { useState } from "react";
 import { Button } from "../Button/component";
+import { useDispatch, useSelector } from "react-redux";
+import { selectDishAmountById } from "../../redux/ui/cart/selectors";
+import { cartActions } from "../../redux/ui/cart";
 
 export const Dish = ({ dish }) => {
-  const [count, setCount] = useState(0);
+  const amount = useSelector((state) => selectDishAmountById(state, dish.id));
+  const dispath = useDispatch();
   return (
     <div>
       <span>{dish.name} - </span>
       <Button
-        onClick={() => setCount(count - 1)}
-        disabled={count === 0}
+        onClick={() => dispath(cartActions.decrement(dish.id))}
+        disabled={amount === 0}
         size="s"
       >
         -
       </Button>
-      {count}
+      {amount}
       <Button
-        onClick={() => setCount(count + 1)}
-        disabled={count === 5}
+        onClick={() => dispath(cartActions.increment(dish.id))}
+        disabled={amount === 5}
         size="s"
       >
         +

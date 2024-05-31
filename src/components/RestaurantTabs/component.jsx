@@ -1,3 +1,4 @@
+import { setStorageItem } from "../../utils/utils";
 import { RestaurantTabContainer } from "../RestaurantTabContainer/container";
 
 export const RestaurantTabs = ({
@@ -10,7 +11,10 @@ export const RestaurantTabs = ({
       {restaurantsIds.map((id) => (
         <RestaurantTabContainer
           key={id}
-          onClick={() => onTabSelect(id)}
+          onClick={() => {
+            onTabSelect(id);
+            setStorageItem("lastActiveRestaurant", id);
+          }}
           isActive={id === activeRestaurantId}
           restaurantId={id}
         />

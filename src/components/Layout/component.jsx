@@ -10,7 +10,7 @@ export const Layout = ({ children }) => {
   const { isBlurActive } = useBlur();
 
   return (
-    <div>
+    <>
       <div className={classNames(styles.wrapper, styles[theme])}>
         <Header className={styles.header} />
         <main
@@ -23,6 +23,6 @@ export const Layout = ({ children }) => {
         <Footer className={styles.footer} />
       </div>
       <div id="modal-container"></div>
-    </div>
+    </>
   );
 };
