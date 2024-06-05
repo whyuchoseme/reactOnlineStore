@@ -5,7 +5,7 @@ import review from "./entities/review";
 import user from "./entities/user";
 import request from "./ui/request";
 import cart from "./ui/cart";
-import { loggerMiddleware } from "./middleware/logger";
+// import { loggerMiddleware } from "./middleware/logger";
 
 export const store = configureStore({
   reducer: {
@@ -16,8 +16,8 @@ export const store = configureStore({
     request,
     cart,
   },
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware().concat([loggerMiddleware]),
+/*   middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat([loggerMiddleware]), */
 });
 
 // console.log(store.getState());

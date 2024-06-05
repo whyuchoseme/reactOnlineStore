@@ -6,9 +6,12 @@ import styles from "./styles.module.css";
 export const Restaurant = ({ restaurant }) => {
   return (
     <div>
-      <h2>{restaurant.name}</h2>
-      <MenuContainer restaurantId={restaurant.id} />
-      <ReviewsContainer restaurantId={restaurant.id} />
+      <h2 className={styles.restaurantName}>{restaurant.name}</h2>
+      <MenuContainer className={styles.menu} restaurantId={restaurant.id} />
+      <ReviewsContainer
+        className={styles.reviews}
+        restaurantId={restaurant.id}
+      />
       <AddReviewButton className={styles.addReviewButton} />
     </div>
   );

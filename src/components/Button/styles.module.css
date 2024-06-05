@@ -75,3 +75,13 @@
 .ratingActive.black {
   background-color: rgba(255, 68, 0, 0.8);
 }
+
+.userAuthorization {
+  padding: 0px 5px;
+  border-width: 1px;
+  border-radius: 10px;
+}
+
+.userAuthorization:active {
+  background-color: orangered;
+}

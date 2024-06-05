@@ -5,7 +5,7 @@ import { getDishes } from "../../redux/entities/dish/thunks/get-dishes";
 import { useRequest } from "../../hooks/use-request";
 import { LOADING_STATUS } from "../../constants/loading-statuses";
 
-export const MenuContainer = ({ restaurantId }) => {
+export const MenuContainer = ({ restaurantId, ...props }) => {
   const restaurantMenu = useSelector((state) =>
     selectRestaurantMenuById(state, restaurantId)
   );
@@ -16,5 +16,5 @@ export const MenuContainer = ({ restaurantId }) => {
     return <div>Loading Dishes...</div>;
   }
 
-  return <Menu menu={restaurantMenu} />;
+  return <Menu {...props} menu={restaurantMenu} />;
 };

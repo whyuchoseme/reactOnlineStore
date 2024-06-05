@@ -17,13 +17,25 @@ export const MainPage = () => {
   useEffect(() => {
     if (!activeRestaurantId && restaurantIds?.length) {
       setActiveRestaurantId(restaurantIds[0]);
-    } else {
+    } else if (getStorageItem("lastActiveRestaurant")) {
       setActiveRestaurantId(getStorageItem("lastActiveRestaurant"));
     }
   }, [restaurantIds]);
 
   if (restaurantLoadingStatus !== LOADING_STATUS.finished) {
-    return <Layout>Loading...</Layout>;
+    return (
+      <div
+        style={{
+          height: 100 + "vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: 50,
+        }}
+      >
+        Loading...
+      </div>
+    );
   }
 
   return (
