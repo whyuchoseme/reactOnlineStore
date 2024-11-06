@@ -1,0 +1,5 @@
+.root {
+  border-radius: 1rem;
+  border: none;
+  transition: background-color 0.5s;
+}

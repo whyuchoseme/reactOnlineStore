@@ -1,18 +1,28 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { normalizedRestaurants } from "../../../constants/normalized-mock";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { getRestaurants } from "./thunks/get-restaurants";
 
-const initialState = {
-  entities: normalizedRestaurants.reduce((acc, restaurant) => {
-    acc[restaurant.id] = restaurant;
+const restaurantEntityAdapter = createEntityAdapter();
 
-    return acc;
-  }, {}),
-  ids: normalizedRestaurants.map(({ id }) => id),
-};
-
-const { reducer } = createSlice({
+const { reducer, actions } = createSlice({
   name: "restaurant",
-  initialState,
+  initialState: restaurantEntityAdapter.getInitialState(),
+  reducers: {
+    addReview: (state, { payload: { restaurantId, reviewId } }) => {
+      restaurantEntityAdapter.updateOne(state, {
+        id: restaurantId,
+        changes: {
+          reviews: [...state.entities[restaurantId].reviews, reviewId],
+        },
+      });
+    },
+  },
+
+  extraReducers: (builder) => {
+    builder.addCase(getRestaurants.fulfilled, (state, { payload }) => {
+      restaurantEntityAdapter.setAll(state, payload);
+    });
+  },
 });
 
 export default reducer;
+export { actions as restaurantActions };
