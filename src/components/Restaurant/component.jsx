@@ -12,7 +12,10 @@ export const Restaurant = ({ restaurant }) => {
         className={styles.reviews}
         restaurantId={restaurant.id}
       />
-      <AddReviewButton className={styles.addReviewButton} />
+      <AddReviewButton
+        className={styles.addReviewButton}
+        restaurantId={restaurant.id}
+      />
     </div>
   );
 };

@@ -1,14 +1,23 @@
 import classNames from "classnames";
 import styles from "./styles.module.css";
-import { useReducer } from "react";
+import { useReducer, useRef } from "react";
 import { Button } from "../Button/component";
 import { useTheme } from "../../contexts/Theme";
 import { RatingInput } from "../RatingInput/component";
 
 const DEFAULT_VALUE = {
   user: "",
-  textReview: "",
+  text: "",
   rating: 1,
+};
+
+const initialStyles = {
+  width: "99.7%",
+  height: "18rem",
+  minHeight: "25rem",
+  maxHeight: "33rem",
+  padding: "1rem",
+  resize: "vertical",
 };
 
 const reducer = (state, action) => {
@@ -17,7 +26,7 @@ const reducer = (state, action) => {
       return { ...state, user: action.payload };
 
     case "setReview":
-      return { ...state, textReview: action.payload };
+      return { ...state, text: action.payload };
 
     case "setRating":
       return { ...state, rating: action.payload };
@@ -33,24 +42,23 @@ const reducer = (state, action) => {
 export const ReviewsForm = ({ onSubmit }) => {
   const { theme } = useTheme();
   const [formValue, dispatch] = useReducer(reducer, DEFAULT_VALUE);
+  const textareaRef = useRef();
+
+  const resetInputValue = () => {
+    const textarea = textareaRef.current;
+    textarea.style.height = initialStyles.height;
+    dispatch({ type: "reset" });
+  };
 
   return (
     <div className={classNames(styles.root, styles[theme])}>
-      <div>
-        <span>User:</span>
+      <div className={styles.userName}>
+        <div>User name:</div>
         <input
+          // style={{ padding: "0 1rem" }}
           value={formValue.user}
           onChange={(event) =>
             dispatch({ type: "setUser", payload: event.target.value })
-          }
-        />
-      </div>
-      <div className={styles.textReview}>
-        <span>Text review:</span>
-        <input
-          value={formValue.textReview}
-          onChange={(event) =>
-            dispatch({ type: "setReview", payload: event.target.value })
           }
         />
       </div>
@@ -59,9 +67,32 @@ export const ReviewsForm = ({ onSubmit }) => {
         value={formValue.rating}
         onChange={(value) => dispatch({ type: "setRating", payload: value })}
       />
+      <div className={styles.textReview}>
+        <div>Text review:</div>
+        <textarea
+          ref={textareaRef}
+          style={initialStyles}
+          value={formValue.text}
+          onChange={(event) => {
+            dispatch({ type: "setReview", payload: event.target.value });
+          }}
+        ></textarea>
+      </div>
       <div className={styles.actionButtons}>
-        <Button onClick={() => dispatch({ type: "reset" })}>Reset</Button>
-        <Button onClick={onSubmit}>Submit</Button>
+        <Button onClick={resetInputValue}>Reset</Button>
+        <Button
+          onClick={() => {
+            if (Object.values(formValue).some((value) => value.length < 2)) {
+              alert(
+                "Заполните пустые поля для публикации Вашего отзыва \nМинимальное число символов > 2"
+              );
+            } else {
+              onSubmit({ ...formValue });
+            }
+          }}
+        >
+          Submit
+        </Button>
       </div>
     </div>
   );

@@ -58,6 +58,8 @@ router.get("/reviews", (req, res, next) => {
   reply(res, result);
 });
 
+// let newReview = {}
+
 router.post("/review/:restaurantId", (req, res, next) => {
   const body = req.body;
   const restaurantId = req.params?.restaurantId;
@@ -66,10 +68,12 @@ router.post("/review/:restaurantId", (req, res, next) => {
 
   if (restaurant && body) {
     const newReviewId = nanoid();
+    const newUserId = nanoid();
 
     newReview = {
       ...body,
       id: newReviewId,
+      userId: newUserId,
     };
     restaurant.reviews.push(newReviewId);
     reviews.push(newReview);
@@ -93,5 +97,35 @@ router.patch("/review/:reviewId", (req, res, next) => {
 router.get("/users", (req, res, next) => {
   reply(res, users);
 });
+
+// router.get("/user/:userId", (req, res, next) => {
+//   const userId = req.params?.userId;
+//   let user;
+
+//   if (userId) {
+//     user = getById(users)(userId);
+//   }
+
+//   reply(res, user);
+// });
+
+// router.post("/user/:reviewId", (req, res, next) => {
+//   const body = req.body;
+//   const reviewId = req.params?.restaurantId;
+//   const review = reviewId && getById(reviews)(reviewId);
+//   let newUser = {};
+
+//   if (review && body) {
+
+//     newUser = {
+//       ...body,
+//       id: newReview.userId,
+//     };
+//     review.users.push(newReview.userId);
+//     users.push(newUser);
+//   }
+
+//   reply(res, newUser);
+// });
 
 module.exports = router;

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Button } from "../Button/component";
-import { ReviewsForm } from "../ReviewsForm/component";
 import { Modal } from "../Modal/component";
 import { useBlur } from "../../contexts/Blur";
 import { useUserAuthorization } from "../../contexts/UserAuthorization";
+import { ReviewsFormContainer } from "../ReviewsForm/container";
 
-export const AddReviewButton = ({ className }) => {
+export const AddReviewButton = ({ restaurantId, className }) => {
   const { isUserAuthorization } = useUserAuthorization();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { switchBlur } = useBlur();
@@ -32,7 +32,10 @@ export const AddReviewButton = ({ className }) => {
         </Button>
         {isModalOpen && (
           <Modal onClose={() => closeModal()}>
-            <ReviewsForm onSubmit={() => closeModal()} />
+            <ReviewsFormContainer
+              restaurantId={restaurantId}
+              closeModal={closeModal}
+            />
           </Modal>
         )}
       </>

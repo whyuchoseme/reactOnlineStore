@@ -16,8 +16,6 @@ export const store = configureStore({
     request,
     cart,
   },
-/*   middleware: (getDefaultMiddleware) =>
+  /*   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([loggerMiddleware]), */
 });
-
-// console.log(store.getState());

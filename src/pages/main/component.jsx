@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Layout } from "../../components/Layout/component";
-import { useSelector } from "react-redux";
+import { useSelector, useStore } from "react-redux";
 import { selectRestaurantIds } from "../../redux/entities/restaurant/selectors";
 import { RestaurantTabsContainer } from "../../components/RestaurantTabs/container";
 import { RestaurantContainer } from "../../components/Restaurant/container";
@@ -8,6 +8,7 @@ import { getRestaurants } from "../../redux/entities/restaurant/thunks/get-resta
 import { LOADING_STATUS } from "../../constants/loading-statuses";
 import { useRequest } from "../../hooks/use-request";
 import { getStorageItem } from "../../utils/utils";
+// import { selectReviewIds } from "../../redux/entities/review/selectors";
 
 export const MainPage = () => {
   const restaurantIds = useSelector(selectRestaurantIds);
@@ -21,6 +22,12 @@ export const MainPage = () => {
       setActiveRestaurantId(getStorageItem("lastActiveRestaurant"));
     }
   }, [restaurantIds]);
+
+  // const store = useStore();
+  // const reviewsIds = useSelector(selectReviewIds)
+  // useEffect(() => {
+  //   console.log(store.getState());
+  // }, [reviewsIds]);
 
   if (restaurantLoadingStatus !== LOADING_STATUS.finished) {
     return (

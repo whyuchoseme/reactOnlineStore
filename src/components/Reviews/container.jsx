@@ -11,17 +11,15 @@ export const ReviewsContainer = ({ restaurantId, ...props }) => {
     selectRestaurantReviewsById(state, restaurantId)
   );
 
-  // const usersLoadingStatus = useRequest(getUsers);
   const usersLoadingStatus = useRequest(getUsers, restaurantId);
   const reviewsLoadingStatus = useRequest(getReviews, restaurantId);
 
-  if (
-    /* usersLoadingStatus !== LOADING_STATUS.finished &&
-    reviewsLoadingStatus === LOADING_STATUS.loading */
-    usersLoadingStatus === LOADING_STATUS.loading &&
-    reviewsLoadingStatus === LOADING_STATUS.loading
-  ) {
-    return <div>Loading Users and Reviews...</div>;
+  if (usersLoadingStatus === LOADING_STATUS.loading) {
+    return <div>Loading Users...</div>;
+  }
+
+  if (reviewsLoadingStatus === LOADING_STATUS.loading) {
+    return <div>Loading Reviews...</div>;
   }
 
   return <Reviews {...props} reviews={restaurantReviews} />;

@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
 
 export const User = ({ user }) => {
-  return <div className={styles.root}>{user.name}:</div>;
+  return <div className={styles.root}>{user?.name || "User"}:</div>;
 };

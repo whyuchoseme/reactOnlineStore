@@ -2,17 +2,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0.5em;
+  margin-top: 1.5rem;
 }
 
 .menu {
-  margin-top: 0.5em;
+  margin-top: 1rem;
 }
 
 .reviews {
-  margin-top: 0.5em;
+  margin-top: 1rem;
 }
 
 .addReviewButton {
-  margin-top: 2em;
+  margin-top: 2.5rem;
 }

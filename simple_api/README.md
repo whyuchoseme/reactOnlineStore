@@ -19,3 +19,6 @@
 ## Пользователи
 
 1. GET /api/users/ - все пользователи;
+<!-- 2. GET /api/user/:userId - пользователь по айдишки (/api/user/d32n32d8huasj );
+3. GET /api/users?reviewId=:reviewId - получить отзывы по айди ресторана (/api/users?reviewId=d32n32d8huasj)
+4. POST /api/user/:reviewId - создать пользователя по айди отзыва (/api/user/d32n32d8huasj, а в бади самого пользователя без айдишки) -->

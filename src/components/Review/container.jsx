@@ -9,5 +9,5 @@ export const ReviewContainer = ({ reviewsIds }) => {
     return null;
   }
 
-  return <Review review={review}/>;
+  return <Review review={review} />;
 };

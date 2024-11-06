@@ -6,5 +6,5 @@
 }
 
 .tab:not(:last-child) {
-  margin-right: 0.2em;
+  margin-right: 0.4rem;
 }
